@@ -1,0 +1,120 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 11, 2016, 10:38:53 PM
+    Author     : Cressence
+*/
+.button-raised{
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(255, 102, 102);
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.main-background{
+    -fx-background-color: rgb(230, 243, 255);
+}
+
+.label{
+    -fx-font-size: 16px;
+}
+
+.title{
+   -fx-font-size: 30px; 
+   -fx-font-weight: bold;
+   -fx-text-fill: rgb(0, 119, 230);
+   -fx-text-family: Ariel, sans serif;
+   
+}
+
+.new-title{
+   -fx-font-size: 20px; 
+   -fx-font-weight: bold;
+   -fx-text-fill: rgb(0, 119, 230);
+   -fx-text-family: Ariel, sans serif;
+   
+}
+
+.title-label{
+   -fx-font-size: 16px; 
+   -fx-font-weight: bold;
+   -fx-text-fill: rgb(255, 102, 102);
+}
+
+.mylistview .scroll-bar:horizontal .track,
+.mylistview .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+.mylistview .scroll-bar:horizontal .increment-button ,
+.mylistview .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+}
+ 
+.mylistview .scroll-bar:vertical .increment-button ,
+.mylistview .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+.mylistview  .scroll-bar .increment-arrow,
+.mylistview  .scroll-bar .decrement-arrow{
+    -fx-shape:" ";  
+    -fx-padding:0;
+}
+ 
+.mylistview .scroll-bar:horizontal .thumb,
+.mylistview .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.button-normal{
+    -fx-pref-width: 90;
+    -fx-font-size: 12px;
+    -fx-background-color: rgb(128, 170, 255);
+     -fx-text-fill: WHITE;
+}
+
+.button-new {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 12px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(255, 102, 102);
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+}
+
+.button-next{
+    fx-padding: 0.7em 0.57em;
+    -fx-font-size: 12px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(255, 102, 102);
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-float: RIGHT;
+}
+.custom-jfx-check-box{
+    -fx-checked-color: RED;
+    -fx-unchecked-color: BLACK;
+}
+
+.the-border {
+    -fx-border-radius: 2px;
+    -fx-border-color: rgb(0, 119, 230);
+}
+
+.jfx-radio-button{
+    -fx-font-size: 14px;
+}
