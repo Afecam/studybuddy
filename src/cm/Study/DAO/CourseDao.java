@@ -97,4 +97,23 @@ public class CourseDao extends javaConnect{
         
         return resultId;
     }
+    
+    public int randomId() throws SQLException{
+       int resultId;
+        String sql ="SELECT Course_Id FROM Course ORDER BY RANDOM() LIMIT 1;";
+        conn = openConnection();
+        stm = conn.createStatement();
+        result = stm.executeQuery(sql);
+        
+        if(result.next()){
+        resultId = result.getInt("Course_Id");
+        }else {
+            resultId = 0;
+        }
+            stm.close();
+            closeConnection();
+            result.close();
+        
+        return resultId;
+    }
 }
