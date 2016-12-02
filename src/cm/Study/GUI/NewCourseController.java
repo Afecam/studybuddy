@@ -15,6 +15,9 @@ import cm.Study.Entities.Days;
 import cm.Study.Main.Main;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,7 +71,6 @@ public class NewCourseController {
         stageCourse.titleHBox.getChildren().addAll(stageCourse.imageView,stageCourse.titleLb );
         stageCourse.titleLb.getStyleClass().add("title-label");
         
-        showTable();
         //course
         stageCourse.validator.setMessage("Value required");
         stageCourse.courseTf.getValidators().add(stageCourse.validator);

@@ -7,6 +7,7 @@ package cm.Study.DAO;
 
 import cm.Study.Entities.Days;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +22,8 @@ public class DayDAO extends javaConnect{
         pst = conn.prepareStatement(sql);
         pst.setInt(1, day.getDay_Id());
         pst.setString(2,day.getDay_Name());
-        pst.setString(3, day.getFree_From());
-        pst.setString(4, day.getFree_To());
+        pst.setString(3, day.getFree_From().toString());
+        pst.setString(4, day.getFree_To().toString());
         
         pst.executeUpdate();
         pst.close();

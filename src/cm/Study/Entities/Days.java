@@ -28,6 +28,7 @@ public class Days {
         this.Free_From = Free_From;
         this.Free_To = Free_To;
     }
+        
 
     public int getDay_Id() {
         return Day_Id;
@@ -61,5 +62,5 @@ public class Days {
         this.Free_To = Free_To;
     }
 
-     
+    
 }

@@ -32,27 +32,7 @@ public class Algorithm {
         String likeString = "Like";
         String notinterString = "Not interesting";
         
-        if (courseDao.showCourses().size() == dayDao.showDays().size()) {
-            for (int i = 0; i < dayDao.showDays().size(); i++) {
-                days = new Days();
-                days = dayDao.showDays().remove(i);
-                
-                dayArrayList1 = addCourse( courseId);  
-                for (int j = 0; j < dayArrayList1.size(); j++) {
-                    if (dayArrayList1.remove(j).equals(num)) {
-                        System.err.println("yes");
-                    }else {
-                        System.out.println("no");
-                    }
-                }
-
-            }
-        }else if (dayDao.showDays().size() > courseDao.showCourses().size()) {
-            
-        }else
-        {
-            System.out.println("not equal");
-        }
+        
         
         
     }
