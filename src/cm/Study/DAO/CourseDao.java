@@ -79,9 +79,39 @@ public class CourseDao extends javaConnect{
         return n==1;
     }
     
+    public boolean deleteAll() throws SQLException{
+        String sql = "DELETE FROM Course;";
+        conn = openConnection();
+        pst = conn.prepareStatement(sql);
+        
+        int n = pst.executeUpdate();
+        pst.close();
+        closeConnection();
+        return n==1;
+    }
+    
     public int getLastId() throws SQLException{
         int resultId;
         String sql ="SELECT Course_Id FROM Course WHERE  Course_Id = (SELECT MAX(Course_Id)  FROM Course);";
+        conn = openConnection();
+        stm = conn.createStatement();
+        result = stm.executeQuery(sql);
+        
+        if(result.next()){
+        resultId = result.getInt("Course_Id");
+        }else {
+            resultId = 0;
+        }
+            stm.close();
+            closeConnection();
+            result.close();
+        
+        return resultId;
+    }
+    
+    public int randomId() throws SQLException{
+       int resultId;
+        String sql ="SELECT Course_Id FROM Course ORDER BY RANDOM() LIMIT 1;";
         conn = openConnection();
         stm = conn.createStatement();
         result = stm.executeQuery(sql);

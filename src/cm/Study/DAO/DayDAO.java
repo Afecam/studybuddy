@@ -79,6 +79,17 @@ public class DayDAO extends javaConnect{
         return n==1;
     }
     
+    public boolean deleteAll() throws SQLException{
+        String sql = "DELETE FROM Days;";
+        conn = openConnection();
+        pst = conn.prepareStatement(sql);
+        
+        int n = pst.executeUpdate();
+        pst.close();
+        closeConnection();
+        return n==1;
+    }
+    
     public int getLastId() throws SQLException{
         int resultId;
         String sql ="SELECT Day_Id FROM Days WHERE  Day_Id = (SELECT MAX(Day_Id)  FROM Days);";

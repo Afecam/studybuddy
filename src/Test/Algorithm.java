@@ -30,37 +30,64 @@ public class Algorithm {
         String likeString = "Like";
         String notinterString = "Not interesting";
         
-        for (int i = 0; i < courseDao.showCourses().size(); i++) {
-            course = new Course();
-            course = courseDao.showCourses().remove(i);
-            if (course.getFavourite().equalsIgnoreCase(calculationString)) {
-                   num = dayDao.randomId();
-                    if (!randArrayList.contains(dayDao.getLastId())) {
-                        randArrayList.add(num);
-                         System.out.print(num + " ");  
-                    }else {
-                       
-                        System.out.print(num + "2  "); 
-                    }                                      
-                System.out.print("***************1A "); 
-            }else if (course.getFavourite().equalsIgnoreCase(notinterString)) {
-                    num = dayDao.randomId();
-                    if (!randArrayList.contains(dayDao.getLastId())) {
-                        randArrayList.add(num);
-                         System.out.print(num + " ");  
-                    }else {
-                        
-                        System.out.print(num + "2  "); 
-                    }                    
-                System.out.print("***************2 ");
-            }else {
-                     num = dayDao.randomId();
-                     if (!randArrayList.contains(dayDao.getLastId())) {
-                        randArrayList.add(num);
-                    System.out.print(num + " ");                  
+        if (dayDao.showDays().size() == courseDao.showCourses().size()) {
+            for (int i = 0; i < dayDao.showDays().size(); i++) {
+                num = courseDao.randomId();
+                if (!randArrayList.contains(num)) {
+                    randArrayList.add(num);
+                    System.out.println(num  + "found  ");
+                } else {
+                    check(randArrayList);
                 }
             }
+        }else if (dayDao.showDays().size() > courseDao.showCourses().size()) {
+            
         }
+        
+//        for (int i = 0; i < courseDao.showCourses().size(); i++) {
+//            course = new Course();
+//            course = courseDao.showCourses().remove(i);
+//            if (course.getFavourite().equalsIgnoreCase(calculationString)) {
+//                   num = dayDao.randomId();
+//                    if (!randArrayList.contains(dayDao.getLastId())) {
+//                        randArrayList.add(num);
+//                         System.out.print(num + " ");  
+//                    }else {
+//                       
+//                        System.out.print(num + "2  "); 
+//                    }                                      
+//                System.out.print("***************end "); 
+//            }else if (course.getFavourite().equalsIgnoreCase(notinterString)) {
+//                    num = dayDao.randomId();
+//                    if (!randArrayList.contains(dayDao.getLastId())) {
+//                        randArrayList.add(num);
+//                         System.out.print(num + " ");  
+//                    }else {
+//                        
+//                        System.out.print(num + "2  "); 
+//                    }                    
+//                System.out.print("***************end ");
+//            }else {
+//                     num = dayDao.randomId();
+//                     if (!randArrayList.contains(dayDao.getLastId())) {
+//                        randArrayList.add(num);
+//                    System.out.print(num + " ");                  
+//                }
+//            }
+//        }
+    }
+    
+    public static ArrayList check(ArrayList randArrayList) throws SQLException{
+        int num;
+        CourseDao courseDao = new CourseDao();
+        num = courseDao.randomId();
+        if (!randArrayList.contains(num)) {
+                    randArrayList.add(num);
+                    System.out.println(num + "not found");
+        } else {
+            check(randArrayList);
+        }
+        return randArrayList;
     }
  
 }

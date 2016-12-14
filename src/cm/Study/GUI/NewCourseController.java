@@ -41,6 +41,7 @@ public class NewCourseController {
     NewCourse stageCourse;
     NewDay stDay;
     TimeTable staTimeTable;
+    public Days days;
 
     public NewCourseController(NewCourse stageCourse, NewDay stDay, TimeTable staTimeTable) throws SQLException {
         this.stageCourse = stageCourse;
@@ -64,7 +65,7 @@ public class NewCourseController {
         stageCourse.titleHBox.getChildren().addAll(stageCourse.imageView,stageCourse.titleLb );
         stageCourse.titleLb.getStyleClass().add("title-label");
         
-        showTable();
+        
         //course
         stageCourse.validator.setMessage("Value required");
         stageCourse.courseTf.getValidators().add(stageCourse.validator);
@@ -229,6 +230,11 @@ public class NewCourseController {
                 Logger.getLogger(NewCourseController.class.getName()).log(Level.SEVERE, null, ex);
             }
             stageCourse.getScene().setRoot(staTimeTable.tableroot);
+            try {
+                showTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(NewCourseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 });
         stDay.previousButton.getStyleClass().add("button-normal");
         stDay.nextButton.getStyleClass().add("button-normal");
@@ -269,15 +275,36 @@ public class NewCourseController {
         staTimeTable.editMenu.setOnAction(e -> {
             staTimeTable.table.setEditable(true);
         });
+       staTimeTable.save.setOnAction(e -> {
+           stageCourse.close();
+            try {
+                newTimetable();
+                newCourse();
+            } catch (SQLException ex) {
+                Logger.getLogger(NewCourseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       });
           
           //table
+        
           staTimeTable.table.getColumns().addAll(staTimeTable.mondayT, staTimeTable.teusdayT, staTimeTable.wednesdayT,
                   staTimeTable.thursdayT, staTimeTable.fridayT, staTimeTable.saturdayT, staTimeTable.sundayT);
+          staTimeTable.wednesdayT.setMinWidth(110);
+          staTimeTable.mondayT.setMinWidth(100);
+          staTimeTable.teusdayT.setMinWidth(100);
+          staTimeTable.thursdayT.setMinWidth(90);
+          staTimeTable.fridayT.setMinWidth(90);
+          staTimeTable.saturdayT.setMinWidth(90);
+          staTimeTable.sundayT.setMinWidth(90);
+          
           
           //middle
           staTimeTable.tableVb.getChildren().addAll(staTimeTable.title, staTimeTable.table);
           staTimeTable.tableVb.setSpacing(13);
           staTimeTable.tableVb.setPadding(new Insets(8, 0, 13, 0));
+          
+          //the back button
+          staTimeTable.backBtn.setOnAction(e -> stageCourse.getScene().setRoot(stageCourse.root));
           
           //root
           staTimeTable.tableroot.setTop(staTimeTable.menubar);
@@ -383,7 +410,7 @@ public void showCourse() throws SQLException{
             days = new Days();
             days = dayDAO.showDays().remove(i);
             itemLabel = new Label();
-            itemLabel.setText(days.getDay_Name().concat(" ").concat(days.getFree_From()).concat("-").
+            itemLabel.setText(days.getDay_Name().concat(" ").concat(days.getFree_From()).concat("  -  ").
                     concat(days.getFree_To()));
             stDay.dayListView.getItems().add(itemLabel);
         }
@@ -404,6 +431,7 @@ public void showCourse() throws SQLException{
         Course_DayDAO course_DayDAO = new Course_DayDAO();
         Course_Day course_Day;
         Days days;
+        String courseString, dayFromString, dayToString;
         DayDAO dayDAO = new DayDAO();
         for (int i = 0; i < course_DayDAO.showCourse_Days().size(); i++) {
             course_Day = new Course_Day();
@@ -414,59 +442,66 @@ public void showCourse() throws SQLException{
             days = dayDAO.showDays().remove(j);
            
                 if (course_Day.getDay_Id() == days.getDay_Id()) {
-                    System.out.print(days.getDay_Name() + "  " + days.getFree_From()+ " " + days.getFree_To() + " ");
-                    
-                    for(int k=0; k <courseDao.showCourses().size(); k++){  
-                    course = new Course();
-                    course =  courseDao.showCourses().remove(k);
-                    
-                        if (course_Day.getCourse_Id() == course.getCourse_Id()) {
-                            System.out.println(course.getCourse_Name());
+                    dayFromString = days.getFree_From();
+                    dayToString = days.getFree_To();
+                    System.out.print(days.getDay_Name() + "  " + dayFromString+ " " +
+                            dayToString + " ");                    
+                        
+                        for(int k=0; k <courseDao.showCourses().size(); k++){  
+                            course = new Course();
+                            course =  courseDao.showCourses().remove(k);
+                           
+                                if (course_Day.getCourse_Id() == course.getCourse_Id()) {
+                                    courseString = course.getCourse_Name();
+                                System.out.println(courseString);
+                                staTimeTable.wednesdayT.setCellFactory(
+                                    new PropertyValueFactory<Course, String>(courseString)
+                                );
+                                //Solve this problem to display the content.
+                                staTimeTable.table.setItems(null);
+                            }
                         }
-                    }
+                    
                 }
                 System.out.println();
+                
             }
         }
-//        staTimeTable.mondayT.setCellFactory(
-//                new PropertyValueFactory("coursename" + "jhjfghfg")
-//        );
+        
     }
     
     //this function saves the course and day according to the level of difficulty
     public void matchCourseDay() throws SQLException{
-        DayDAO dayDao = new DayDAO();
+        DayDAO dayDao = new DayDAO();        
         CourseDao courseDao = new CourseDao();
-        Course course;
-        int num;
+        ArrayList randArrayList = new ArrayList();
+        int num, courseId;
         
-        for (int i = 0; i < courseDao.showCourses().size(); i++) {
-            ArrayList randArrayList = new ArrayList();
-            course = new Course();
-            course = courseDao.showCourses().remove(i);
-            if (course.getFavourite().equalsIgnoreCase(stageCourse.calculationString)) {
-                   num = dayDao.randomId();
-                    if (!randArrayList.contains(dayDao.getLastId())) {
-                        randArrayList.add(num);
-                         saveTableData(course.getCourse_Id(), num);
-                    }                                     
-            }else if (course.getFavourite().equalsIgnoreCase(stageCourse.notinterString)) {
-                    num = dayDao.randomId();
-                    if (!randArrayList.contains(dayDao.getLastId())) {
-                         saveTableData(course.getCourse_Id(), num);                  
+        if (dayDao.showDays().size() == courseDao.showCourses().size()) {
+            for (int i = 0; i < dayDao.showDays().size(); i++) {
+                days = new Days();
+                days = dayDao.showDays().remove(i);
+                num = courseDao.randomId();
+                if (!randArrayList.contains(num)) {
+                    randArrayList.add(num);
+                    saveTableData(num, days.getDay_Id());
+                } else {
+                    check(randArrayList);
                 }
-            }else {
-                if (!randArrayList.contains(dayDao.getLastId())) {
-                     num = dayDao.randomId(); 
-                    saveTableData(course.getCourse_Id(), num);
-                }                    
-                }
+            }
         }
     }
     
     public void clearDb() throws SQLException{
         Course_DayDAO cddao = new Course_DayDAO();
         cddao.deleteCourseDay();
+    }
+    
+    public void  newTimetable() throws SQLException{
+        DayDAO dayDAO = new DayDAO();
+        CourseDao courseDao = new CourseDao();
+        dayDAO.deleteAll();
+        courseDao.deleteAll();
     }
    
     
@@ -480,5 +515,24 @@ public void showCourse() throws SQLException{
             couArrayList.add(course);
         }
        return couArrayList;
+    }
+    
+    public  void check(ArrayList randArrayList) throws SQLException{
+        int num;
+        CourseDao courseDao = new CourseDao();
+        num = courseDao.randomId();
+        if (!randArrayList.contains(num)) {
+                    randArrayList.add(num);
+                   saveTableData(num, days.getDay_Id());
+        } else {
+            check(randArrayList);
+        }
+    }
+    
+    public void newCourse() throws SQLException{
+        NewCourse newCourse = new NewCourse();
+        NewDay newDay = new NewDay();
+        TimeTable newTimeTable = new TimeTable();
+        NewCourseController newCourseController = new NewCourseController(newCourse, newDay, newTimeTable);
     }
 }
