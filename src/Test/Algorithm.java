@@ -22,14 +22,17 @@ public class Algorithm {
     public static void main(String args[]) throws SQLException{     
         DayDAO dayDao = new DayDAO();
         CourseDao courseDao = new CourseDao();
+        Days days;
         Course course;
-        int num;
-        ArrayList randArrayList = new ArrayList();
+        int courseId = 0;
+        int num = 2;
+        ArrayList dayArrayList1 = new ArrayList();
         
         String calculationString = "Calculation";
         String likeString = "Like";
         String notinterString = "Not interesting";
         
+<<<<<<< HEAD
         if (dayDao.showDays().size() == courseDao.showCourses().size()) {
             for (int i = 0; i < dayDao.showDays().size(); i++) {
                 num = courseDao.randomId();
@@ -88,6 +91,25 @@ public class Algorithm {
             check(randArrayList);
         }
         return randArrayList;
+=======
+        
+        
+        
     }
- 
+    
+    public static ArrayList addCourse(int courseId) throws SQLException{
+        ArrayList dayArrayList = new ArrayList();
+        DayDAO dayDao = new DayDAO();
+        CourseDao courseDao = new CourseDao();
+        courseId = courseDao.randomId();
+                if (!dayArrayList.contains(courseId)) {
+                    dayArrayList.add(courseId);
+                    System.out.println(courseId);
+                }else {
+                    addCourse(courseId);
+                }
+                return dayArrayList;
+>>>>>>> first-branch
+    }
 }
+ 

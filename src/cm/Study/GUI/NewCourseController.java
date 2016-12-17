@@ -1,8 +1,9 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    This is the only controller for this project. This is due to some complcations with the Netbeans IDE. This is not
+    a ggod programming methodology. So please do not use one controller in your projects.
+
+*/
 package cm.Study.GUI;
 
 import cm.Study.DAO.CourseDao;
@@ -14,6 +15,9 @@ import cm.Study.Entities.Days;
 import cm.Study.Main.Main;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +32,6 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -55,6 +58,10 @@ public class NewCourseController {
    
     
     public void initialize() throws SQLException{
+        
+        /*
+            This section of this controller class deals with the new coures controller.
+        */
         stageCourse.courseScene = new Scene(stageCourse.root, 679, 477);
         stageCourse.courseScene.getStylesheets().add(Main.class.getResource("styles.css").toExternalForm());
         
@@ -67,7 +74,10 @@ public class NewCourseController {
         stageCourse.titleHBox.getChildren().addAll(stageCourse.imageView,stageCourse.titleLb );
         stageCourse.titleLb.getStyleClass().add("title-label");
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> first-branch
         //course
         stageCourse.validator.setMessage("Value required");
         stageCourse.courseTf.getValidators().add(stageCourse.validator);
@@ -182,13 +192,13 @@ public class NewCourseController {
         stDay.nbLabel.setPadding(new Insets(0, 0, 0, 110));
         
         //left
-        stDay.dayCombo.getItems().addAll(new Label("Monday"),
-                new Label("Teusday"),
-                new Label("Wednesday"),
-                new Label("Thursday"),
-                new Label("Friday"),
-                new Label("Saturday"),
-                new Label("Sunday"));
+        stDay.dayCombo.getItems().addAll("Monday",
+                "Teusday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday");
         stDay.daysVBox.getChildren().addAll(stDay.daysLb, stDay.dayCombo);
         
         stDay.timeFrom.setShowTime(true);
@@ -202,9 +212,15 @@ public class NewCourseController {
         stDay.okButton.getStyleClass().add("button-normal");
         
         //save day
+        Label timeLabel = new Label();
+        Label timeToLabel = new Label();        
+        
         stDay.okButton.setOnAction(e ->{
+            
             try {
-                saveDay(stDay.dayCombo.getJFXEditor().getText(), stDay.timeFrom.getPromptText(), stDay.timeTo.getPromptText());
+                System.out.println(stDay.timeFrom.getValue());
+                System.out.println(stDay.timeTo.getValue());
+                saveDay(stDay.dayCombo.getValue().toString(), stDay.timeFrom.getTime().toString(), stDay.timeTo.getTime().toString());
             } catch (SQLException ex) {
                 Logger.getLogger(NewCourseController.class.getName()).log(Level.SEVERE, null, ex);
             }
