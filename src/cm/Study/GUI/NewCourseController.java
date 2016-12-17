@@ -32,6 +32,7 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -74,10 +75,6 @@ public class NewCourseController {
         stageCourse.titleHBox.getChildren().addAll(stageCourse.imageView,stageCourse.titleLb );
         stageCourse.titleLb.getStyleClass().add("title-label");
         
-<<<<<<< HEAD
-        
-=======
->>>>>>> first-branch
         //course
         stageCourse.validator.setMessage("Value required");
         stageCourse.courseTf.getValidators().add(stageCourse.validator);
@@ -382,68 +379,68 @@ public void saveCourse(String courseName, int credit_value, String type) throws 
         
     }
 
-//public void showCourse() throws SQLException{ 
-//        Course course;
-//        Label itemLabel;
-//        CourseDao courseDao = new CourseDao();
-//        for(int i=0; i<courseDao.showCourses().size(); i++){  
-//            course = new Course();
-//            course =  courseDao.showCourses().remove(i);
-//            itemLabel = new Label();
-//            itemLabel.setText(course.getCourse_Name());
-//          stageCourse.courseListView.getItems().add(itemLabel);
-//        }
-//       
-//    }
-//
-// public void updateCourse(Course course) throws SQLException{
-//        CourseDao courseDao = new CourseDao();
-//        courseDao.updateCourse(course);
-//    }
-//    
-//    public void deleteCourse(String courseName) throws SQLException{
-//        CourseDao courseDao = new CourseDao();
-//        courseDao.deleteCourse(courseName);
-//        
-//    }
-//    public void clickShowCourse(){
-//        
-//    }
-//    
-//    //******************************************************************************************************
-//    
-//    public void saveDay(String theDay, String from, String dayto) throws SQLException{
-//        Days day = new Days(theDay, from, dayto);
-//        DayDAO dayDao = new DayDAO();
-//        day.setDay_Id(dayDao.getLastId() + 1);
-//        dayDao.saveDay(day);
-//    }
-//    
-//    public void showDay() throws SQLException{
-//        Days days;
-//        DayDAO dayDAO = new DayDAO();
-//        Label itemLabel;
-//        
-//        for (int i = 0; i < dayDAO.showDays().size(); i++) {
-//            days = new Days();
-//            days = dayDAO.showDays().remove(i);
-//            itemLabel = new Label();
-//            itemLabel.setText(days.getDay_Name().concat(" ").concat(days.getFree_From()).concat("  -  ").
-//                    concat(days.getFree_To()));
-//            stDay.dayListView.getItems().add(itemLabel);
-//        }
-//    }
-//    
-//    //*****************************************************************************************************
-//    public void saveTableData(int Course_Id, int Day_Id) throws SQLException{
-//        
-//        Course_Day course_Day = new Course_Day( Course_Id, Day_Id);
-//        Course_DayDAO course_DayDAO = new Course_DayDAO();
-//        course_Day.setCourseDay_id(course_DayDAO.getLastId() + 1);
-//        course_DayDAO.saveCourse_Day(course_Day);
-//    }
-//    
-//    public  void showTable() throws SQLException{
+public void showCourse() throws SQLException{ 
+        Course course;
+        Label itemLabel;
+        CourseDao courseDao = new CourseDao();
+        for(int i=0; i<courseDao.showCourses().size(); i++){  
+            course = new Course();
+            course =  courseDao.showCourses().remove(i);
+            itemLabel = new Label();
+            itemLabel.setText(course.getCourse_Name());
+          stageCourse.courseListView.getItems().add(itemLabel);
+        }
+       
+    }
+
+ public void updateCourse(Course course) throws SQLException{
+        CourseDao courseDao = new CourseDao();
+        courseDao.updateCourse(course);
+    }
+    
+    public void deleteCourse(String courseName) throws SQLException{
+        CourseDao courseDao = new CourseDao();
+        courseDao.deleteCourse(courseName);
+        
+    }
+    public void clickShowCourse(){
+        
+    }
+    
+    //******************************************************************************************************
+    
+    public void saveDay(String theDay, String from, String dayto) throws SQLException{
+        Days day = new Days(theDay, from, dayto);
+        DayDAO dayDao = new DayDAO();
+        day.setDay_Id(dayDao.getLastId() + 1);
+        dayDao.saveDay(day);
+    }
+    
+    public void showDay() throws SQLException{
+        Days days;
+        DayDAO dayDAO = new DayDAO();
+        Label itemLabel;
+        
+        for (int i = 0; i < dayDAO.showDays().size(); i++) {
+            days = new Days();
+            days = dayDAO.showDays().remove(i);
+            itemLabel = new Label();
+            itemLabel.setText(days.getDay_Name().concat(" ").concat(days.getFree_From()).concat("  -  ").
+                    concat(days.getFree_To()));
+            stDay.dayListView.getItems().add(itemLabel);
+        }
+    }
+    
+    //*****************************************************************************************************
+    public void saveTableData(int Course_Id, int Day_Id) throws SQLException{
+        
+        Course_Day course_Day = new Course_Day( Course_Id, Day_Id);
+        Course_DayDAO course_DayDAO = new Course_DayDAO();
+        course_Day.setCourseDay_id(course_DayDAO.getLastId() + 1);
+        course_DayDAO.saveCourse_Day(course_Day);
+    }
+    
+    public  void showTable() throws SQLException{
 //        Course course;
 //        ObservableList<ObservableList> data = FXCollections.observableArrayList();
 //        ObservableList<String> row = FXCollections.observableArrayList();
@@ -490,7 +487,7 @@ public void saveCourse(String courseName, int credit_value, String type) throws 
 //            }
 //        }
 //        staTimeTable.table.setItems(data);
-//    }
+    }
     
     //this function saves the course and day according to the level of difficulty
     public void matchCourseDay() throws SQLException{
