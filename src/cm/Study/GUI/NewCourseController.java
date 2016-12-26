@@ -441,52 +441,49 @@ public void showCourse() throws SQLException{
     }
     
     public  void showTable() throws SQLException{
-//        Course course;
-//        ObservableList<ObservableList> data = FXCollections.observableArrayList();
-//        ObservableList<String> row = FXCollections.observableArrayList();
-//        CourseDao courseDao = new CourseDao();
-//        Course_DayDAO course_DayDAO = new Course_DayDAO();
-//        Course_Day course_Day;
-//        Days days;
-//        String courseString, dayFromString, dayToString;
-//        DayDAO dayDAO = new DayDAO();
-//        for (int i = 0; i < course_DayDAO.showCourse_Days().size(); i++) {
-//            course_Day = new Course_Day();
-//            course_Day = course_DayDAO.showCourse_Days().remove(i);
-//            
-//            for (int j = 0; j < dayDAO.showDays().size(); j++) {
-//            days = new Days();
-//            days = dayDAO.showDays().remove(j);
-//           
-//                if (course_Day.getDay_Id() == days.getDay_Id()) {
-//                    dayFromString = days.getFree_From();
-//                    dayToString = days.getFree_To();
-//                    System.out.print(days.getDay_Name() + "  " + dayFromString+ " " +
-//                            dayToString + " ");                    
-//                        
-//                        for(int k=0; k <courseDao.showCourses().size(); k++){  
-//                            course = new Course();
-//                            course =  courseDao.showCourses().remove(k);
-//                           
-//                                if (course_Day.getCourse_Id() == course.getCourse_Id()) {
-//                                    courseString = course.getCourse_Name();
-//                                System.out.println(courseString);
-//                                
-//                                row.add(courseString);
-//                                staTimeTable.wednesdayT.setCellFactory(
-//                                    new PropertyValueFactory<Course, String>(courseString)
-//                                );
-//                                //Solve this problem to display the content.
-//                                
-//                            }
-//                        }
-//                    data.add(row);
-//                }
-//                System.out.println();
-//                
-//            }
-//        }
-//        staTimeTable.table.setItems(data);
+        Course course;
+        ObservableList<ObservableList> data = FXCollections.observableArrayList();
+        ObservableList<String> row = FXCollections.observableArrayList();
+        CourseDao courseDao = new CourseDao();
+        Course_DayDAO course_DayDAO = new Course_DayDAO();
+        Course_Day course_Day;
+        Days days;
+        String courseString, dayFromString, dayToString;
+        DayDAO dayDAO = new DayDAO();
+        for (int i = 0; i < course_DayDAO.showCourse_Days().size(); i++) {
+            course_Day = new Course_Day();
+            course_Day = course_DayDAO.showCourse_Days().remove(i);
+            
+            for (int j = 0; j < dayDAO.showDays().size(); j++) {
+            days = new Days();
+            days = dayDAO.showDays().remove(j);
+           
+                if (course_Day.getDay_Id() == days.getDay_Id()) {
+                    dayFromString = days.getFree_From();
+                    dayToString = days.getFree_To();
+                    System.out.print(days.getDay_Name() + "  " + dayFromString+ " " +
+                            dayToString + " ");                    
+                        
+                        for(int k=0; k <courseDao.showCourses().size(); k++){  
+                            course = new Course();
+                            course =  courseDao.showCourses().remove(k);
+                           
+                                if (course_Day.getCourse_Id() == course.getCourse_Id()) {
+                                    courseString = course.getCourse_Name();
+                                System.out.println(courseString);
+                                
+                                row.add(courseString);
+                                
+                                //Solve this problem to display the content.
+                                
+                            }
+                        }
+                }
+                System.out.println(); 
+            }
+             data.add(row);
+        }
+        staTimeTable.table.setItems(data);
     }
     
     //this function saves the course and day according to the level of difficulty
