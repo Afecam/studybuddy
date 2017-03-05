@@ -13,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -36,18 +37,18 @@ public class TimeTable extends Stage{
     MenuItem exitM = new MenuItem("Exit");
     
     //Button
-    JFXButton backBtn = new JFXButton("Edit | Regenerate");
+    JFXButton backBtn = new JFXButton("Edit | New");
     
-    //table
-    TableView table = new TableView();
-    
-    TableColumn mondayT = new TableColumn("Monday");
-    TableColumn teusdayT = new TableColumn("Tuesday");
-    TableColumn wednesdayT = new TableColumn("Wednesday");
-    TableColumn thursdayT = new TableColumn("Thursday");
-    TableColumn fridayT = new TableColumn("Friday");
-    TableColumn saturdayT = new TableColumn("Saturday");
-    TableColumn sundayT = new TableColumn("Sunday");
+    VBox mondayBox = new VBox();
+    VBox teusdayBox = new VBox();
+    VBox wednesdayBox = new VBox();
+    VBox thursdayBox = new VBox();
+    VBox fridayBox = new VBox();
+    VBox saturdayBox = new VBox();
+    VBox sundayBox = new VBox();
+    HBox firstHBox = new HBox();
+    HBox secondHBox = new HBox();
+    HBox thirdHBox = new HBox();
     
     //layout
     VBox tableVb = new VBox();

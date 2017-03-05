@@ -106,8 +106,8 @@ public class NewCourseController {
         stageCourse.nextButton.setOnAction(e -> stageCourse.getScene().setRoot(stDay.root));
         stageCourse.nextButton.getStyleClass().add("button-normal");
         stageCourse.rightVBox.setPadding(new Insets(0,0,10,0));
-        stageCourse.courseListView.setPrefHeight(300);
-        stageCourse.courseListView.setPrefWidth(250);
+        stageCourse.courseListView.setPrefHeight(285);
+        stageCourse.courseListView.setPrefWidth(220);
         
         
         
@@ -140,7 +140,8 @@ public class NewCourseController {
         });
         
         //left
-        stageCourse.leftVBox.getChildren().addAll(stageCourse.courseVb, stageCourse.creditVb, stageCourse.radioVBox, stageCourse.okButton);
+        stageCourse.leftVBox.getChildren().addAll(stageCourse.courseVb, stageCourse.creditVb,
+                stageCourse.radioVBox, stageCourse.okButton);
         stageCourse.leftVBox.setSpacing(12);
         stageCourse.okButton.getStyleClass().add("button-normal");
                
@@ -205,7 +206,8 @@ public class NewCourseController {
         stDay.toVBox.getChildren().addAll(stDay.toLabel, stDay.timeTo);
         
         stDay.leftVBox.getChildren().addAll(stDay.daysVBox, stDay.froVBox, stDay.toVBox, stDay.okButton);
-        stDay.leftVBox.setSpacing(12);
+        stDay.leftVBox.setSpacing(30);
+        stDay.leftVBox.setPadding(new Insets(0, 0, 0, 15));
         stDay.okButton.getStyleClass().add("button-normal");
         
         //save day
@@ -254,10 +256,10 @@ public class NewCourseController {
         stDay.previousButton.getStyleClass().add("button-normal");
         stDay.nextButton.getStyleClass().add("button-normal");
         stDay.rightVBox.getChildren().addAll(stDay.dayListView, stDay.buttonHBox);
-        stDay.rightVBox.setSpacing(9);
-        stDay.buttonHBox.setPadding(new Insets(0,0,10,0));
-        stDay.dayListView.setPrefHeight(250);
-        stDay.dayListView.setPrefWidth(100);
+        stDay.rightVBox.setSpacing(12);
+        stDay.rightVBox.setPadding(new Insets(0,0,0,12));
+        stDay.buttonHBox.setPadding(new Insets(0,0,0,7));
+        stDay.dayListView.setPrefHeight(245);
         
         //show days
         showDay();
@@ -266,7 +268,7 @@ public class NewCourseController {
         stDay.middleHBox.getChildren().addAll(stDay.leftVBox, stDay.rightVBox);
         stDay.middleHBox.setAlignment(Pos.CENTER);
         stDay.middleHBox.setPadding(new Insets(20,0,0,0));
-        stDay.middleHBox.setSpacing(60);
+        stDay.middleHBox.setSpacing(15);
         
         //root
         stDay.root.getChildren().addAll(stDay.titleHBox, stDay.nbLabel, stDay.middleHBox);
@@ -286,9 +288,9 @@ public class NewCourseController {
         {System.exit(0);});
         staTimeTable.print.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         staTimeTable.save.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-        staTimeTable.print.setOnAction(e ->print(staTimeTable.table));
+        staTimeTable.print.setOnAction(e ->print(staTimeTable.tableVb));
         staTimeTable.editMenu.setOnAction(e -> {
-            staTimeTable.table.setEditable(true);
+            //what to edit
         });
        staTimeTable.save.setOnAction(e -> {
            stageCourse.close();
@@ -299,22 +301,34 @@ public class NewCourseController {
                 Logger.getLogger(NewCourseController.class.getName()).log(Level.SEVERE, null, ex);
             }
        });
-          
-          //table
-        
-          staTimeTable.table.getColumns().addAll(staTimeTable.mondayT, staTimeTable.teusdayT, staTimeTable.wednesdayT,
-                  staTimeTable.thursdayT, staTimeTable.fridayT, staTimeTable.saturdayT, staTimeTable.sundayT);
-          staTimeTable.wednesdayT.setMinWidth(110);
-          staTimeTable.mondayT.setMinWidth(100);
-          staTimeTable.teusdayT.setMinWidth(100);
-          staTimeTable.thursdayT.setMinWidth(90);
-          staTimeTable.fridayT.setMinWidth(90);
-          staTimeTable.saturdayT.setMinWidth(90);
-          staTimeTable.sundayT.setMinWidth(90);
-          
+               
           
           //middle
-          staTimeTable.tableVb.getChildren().addAll(staTimeTable.title, staTimeTable.table);
+       staTimeTable.mondayBox.getStyleClass().add("time-table");
+       staTimeTable.teusdayBox.getStyleClass().add("time-table");
+       staTimeTable.wednesdayBox.getStyleClass().add("time-table");
+       staTimeTable.thursdayBox.getStyleClass().add("time-table");
+       staTimeTable.fridayBox.getStyleClass().add("time-table");
+       staTimeTable.saturdayBox.getStyleClass().add("time-table");
+       staTimeTable.sundayBox.getStyleClass().add("time-table");
+       staTimeTable.mondayBox.setMinWidth(180);
+       staTimeTable.teusdayBox.setMinWidth(180);
+       staTimeTable.wednesdayBox.setMinWidth(180);
+       staTimeTable.thursdayBox.setMinWidth(180);
+       staTimeTable.fridayBox.setMinWidth(180);
+       staTimeTable.saturdayBox.setMinWidth(180);
+       staTimeTable.sundayBox.setMinWidth(180);
+       staTimeTable.firstHBox.setSpacing(40);
+       staTimeTable.secondHBox.setSpacing(40);
+       staTimeTable.thirdHBox.setSpacing(40);
+       
+       staTimeTable.firstHBox.getChildren().addAll(staTimeTable.mondayBox, staTimeTable.teusdayBox,
+                  staTimeTable.wednesdayBox);
+       staTimeTable.secondHBox.getChildren().addAll(staTimeTable.thursdayBox, staTimeTable.fridayBox,
+                  staTimeTable.saturdayBox );
+       staTimeTable.thirdHBox.getChildren().add(staTimeTable.sundayBox);
+          staTimeTable.tableVb.getChildren().addAll(staTimeTable.title, staTimeTable.firstHBox,
+                  staTimeTable.secondHBox, staTimeTable.thirdHBox);
           staTimeTable.tableVb.setSpacing(13);
           staTimeTable.tableVb.setPadding(new Insets(8, 0, 13, 0));
           
@@ -322,6 +336,7 @@ public class NewCourseController {
           staTimeTable.backBtn.setOnAction(e -> stageCourse.getScene().setRoot(stageCourse.root));
           
           //root
+          staTimeTable.tableroot.getStyleClass().add("main-background");
           staTimeTable.tableroot.setTop(staTimeTable.menubar);
           staTimeTable.tableroot.setCenter(staTimeTable.tableVb);
           staTimeTable.tableroot.setBottom(staTimeTable.backBtn);
@@ -442,18 +457,42 @@ public void showCourse() throws SQLException{
     
     public  void showTable() throws SQLException{
         Course course;
-        ObservableList<ObservableList> data = FXCollections.observableArrayList();
-        ObservableList<String> row = FXCollections.observableArrayList();
         CourseDao courseDao = new CourseDao();
         Course_DayDAO course_DayDAO = new Course_DayDAO();
         Course_Day course_Day;
         Days days;
         String courseString, dayFromString, dayToString;
         DayDAO dayDAO = new DayDAO();
+         Label text;
+         int count = 0;
+         Label mondayLabel = new Label("MONDAY");
+         mondayLabel.getStyleClass().add("title-labels");
+         Label teusdayLabel = new Label("TEUSDAY");
+         teusdayLabel.getStyleClass().add("title-labels");
+         Label wednesdayLabel = new Label("WEDNESDAY");
+         wednesdayLabel.getStyleClass().add("title-labels");
+         Label thursdayLabel = new Label("THURSDAY");
+         thursdayLabel.getStyleClass().add("title-labels");
+         Label fridayLabel = new Label("FRIDAY");
+         fridayLabel.getStyleClass().add("title-labels");
+         Label saturdayLabel = new Label("SATURDAY");
+         saturdayLabel.getStyleClass().add("title-labels");
+         Label sundayLabel = new Label("SUNDAY");
+         sundayLabel.getStyleClass().add("title-labels");
+         
+         
+         ArrayList<Label> mondaArrayList = new ArrayList();
+         ArrayList<Label> teusArrayList = new ArrayList();
+         ArrayList<Label> wednesdayArrayList = new ArrayList();
+         ArrayList<Label> thursdayArrayList = new ArrayList();
+         ArrayList<Label> fridayArrayList = new ArrayList();
+         ArrayList<Label> saturdayArrayList = new ArrayList();
+         ArrayList<Label> sundayArrayList = new ArrayList();
         for (int i = 0; i < course_DayDAO.showCourse_Days().size(); i++) {
             course_Day = new Course_Day();
             course_Day = course_DayDAO.showCourse_Days().remove(i);
             
+            //compare day_course to day class
             for (int j = 0; j < dayDAO.showDays().size(); j++) {
             days = new Days();
             days = dayDAO.showDays().remove(j);
@@ -461,29 +500,75 @@ public void showCourse() throws SQLException{
                 if (course_Day.getDay_Id() == days.getDay_Id()) {
                     dayFromString = days.getFree_From();
                     dayToString = days.getFree_To();
-                    System.out.print(days.getDay_Name() + "  " + dayFromString+ " " +
-                            dayToString + " ");                    
-                        
+                                        
+                   
+                    //compare day_course with course class
                         for(int k=0; k <courseDao.showCourses().size(); k++){  
                             course = new Course();
                             course =  courseDao.showCourses().remove(k);
                            
                                 if (course_Day.getCourse_Id() == course.getCourse_Id()) {
                                     courseString = course.getCourse_Name();
+                                    System.out.print(days.getDay_Name() + "  " + dayFromString+ " " +
+                            dayToString + " ");
                                 System.out.println(courseString);
+                                count++;
+                                text = new Label();
+                                text.setText(courseString + "\n " +dayFromString+ " - " +dayToString);
                                 
-                                row.add(courseString);
-                                
+                                    if ("Monday".equals(days.getDay_Name())) {
+                                        mondaArrayList.add(text);
+                                    }else if("Teusday".equals(days.getDay_Name())){
+                                        teusArrayList.add(text);
+                                }else if("Wednesday".equals(days.getDay_Name())){
+                                    wednesdayArrayList.add(text);
+                                }else if("Thursday".equals(days.getDay_Name())){
+                                    thursdayArrayList.add(text);
+                                }else if("Friday".equals(days.getDay_Name())){
+                                    fridayArrayList.add(text);
+                                }else if("Saturday".equals(days.getDay_Name())){
+                                    saturdayArrayList.add(text);
+                                }else if("Sunday".equals(days.getDay_Name())){
+                                    sundayArrayList.add(text);
+                                }
+                                    
                                 //Solve this problem to display the content.
-                                
+                                System.out.println();
                             }
+                                 
                         }
                 }
-                System.out.println(); 
             }
-             data.add(row);
         }
-        staTimeTable.table.setItems(data);
+        staTimeTable.mondayBox.getChildren().add(mondayLabel);
+        staTimeTable.teusdayBox.getChildren().add(teusdayLabel);
+        staTimeTable.wednesdayBox.getChildren().add(wednesdayLabel);
+        staTimeTable.thursdayBox.getChildren().add(thursdayLabel);
+        staTimeTable.fridayBox.getChildren().add(fridayLabel);
+        staTimeTable.saturdayBox.getChildren().add(saturdayLabel);
+        staTimeTable.sundayBox.getChildren().add(sundayLabel);
+        for (int i = 0; i < mondaArrayList.size(); i++) {
+            staTimeTable.mondayBox.getChildren().add(mondaArrayList.get(i));
+        }
+        for (int i = 0; i < teusArrayList.size(); i++) {
+            staTimeTable.teusdayBox.getChildren().add(teusArrayList.get(i));
+        }
+        for (int i = 0; i < wednesdayArrayList.size(); i++) {
+            staTimeTable.wednesdayBox.getChildren().add(wednesdayArrayList.get(i));
+        }
+        for (int i = 0; i < thursdayArrayList.size(); i++) {
+            staTimeTable.thursdayBox.getChildren().add(thursdayArrayList.get(i));
+        }
+        for (int i = 0; i < fridayArrayList.size(); i++) {
+            staTimeTable.fridayBox.getChildren().add(fridayArrayList.get(i));
+        }
+        for (int i = 0; i < saturdayArrayList.size(); i++) {
+            staTimeTable.saturdayBox.getChildren().add(saturdayArrayList.get(i));
+        }
+        for (int i = 0; i < sundayArrayList.size(); i++) {
+            staTimeTable.sundayBox.getChildren().add(sundayArrayList.get(i));
+        }
+        
     }
     
     //this function saves the course and day according to the level of difficulty
