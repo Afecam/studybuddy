@@ -5,10 +5,13 @@
         <group>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/GUI/TimeTable.java</file>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/GUI/NewCourseController.java</file>
+            <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/Main/Main.java</file>
+            <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/GUI/MainWindowController.java</file>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/GUI/NewCourse.java</file>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/Entities/Course.java</file>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/Test/Algorithm.java</file>
             <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/Main/styles.css</file>
+            <file>file:/C:/Users/Cressence/Documents/NetBeansProjects/StudyBuddy/src/cm/Study/DAO/CourseDao.java</file>
         </group>
     </open-files>
 </project-private>

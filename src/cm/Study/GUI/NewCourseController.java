@@ -278,6 +278,30 @@ public class NewCourseController {
         //****************************************************************************************************
         //timetable
         
+        Label mondayLabel = new Label("MONDAY");
+         mondayLabel.getStyleClass().add("title-labels");
+         Label teusdayLabel = new Label("TEUSDAY");
+         teusdayLabel.getStyleClass().add("title-labels");
+         Label wednesdayLabel = new Label("WEDNESDAY");
+         wednesdayLabel.getStyleClass().add("title-labels");
+         Label thursdayLabel = new Label("THURSDAY");
+         thursdayLabel.getStyleClass().add("title-labels");
+         Label fridayLabel = new Label("FRIDAY");
+         fridayLabel.getStyleClass().add("title-labels");
+         Label saturdayLabel = new Label("SATURDAY");
+         saturdayLabel.getStyleClass().add("title-labels");
+         Label sundayLabel = new Label("SUNDAY");
+         sundayLabel.getStyleClass().add("title-labels");
+         
+         
+         staTimeTable.mondayBox.getChildren().add(mondayLabel);
+        staTimeTable.teusdayBox.getChildren().add(teusdayLabel);
+        staTimeTable.wednesdayBox.getChildren().add(wednesdayLabel);
+        staTimeTable.thursdayBox.getChildren().add(thursdayLabel);
+        staTimeTable.fridayBox.getChildren().add(fridayLabel);
+        staTimeTable.saturdayBox.getChildren().add(saturdayLabel);
+        staTimeTable.sundayBox.getChildren().add(sundayLabel);
+        
         //tittle
           staTimeTable.title.getStyleClass().add("title-label");
         
@@ -465,22 +489,7 @@ public void showCourse() throws SQLException{
         DayDAO dayDAO = new DayDAO();
          Label text;
          int count = 0;
-         Label mondayLabel = new Label("MONDAY");
-         mondayLabel.getStyleClass().add("title-labels");
-         Label teusdayLabel = new Label("TEUSDAY");
-         teusdayLabel.getStyleClass().add("title-labels");
-         Label wednesdayLabel = new Label("WEDNESDAY");
-         wednesdayLabel.getStyleClass().add("title-labels");
-         Label thursdayLabel = new Label("THURSDAY");
-         thursdayLabel.getStyleClass().add("title-labels");
-         Label fridayLabel = new Label("FRIDAY");
-         fridayLabel.getStyleClass().add("title-labels");
-         Label saturdayLabel = new Label("SATURDAY");
-         saturdayLabel.getStyleClass().add("title-labels");
-         Label sundayLabel = new Label("SUNDAY");
-         sundayLabel.getStyleClass().add("title-labels");
-         
-         
+                 
          ArrayList<Label> mondaArrayList = new ArrayList();
          ArrayList<Label> teusArrayList = new ArrayList();
          ArrayList<Label> wednesdayArrayList = new ArrayList();
@@ -540,13 +549,7 @@ public void showCourse() throws SQLException{
                 }
             }
         }
-        staTimeTable.mondayBox.getChildren().add(mondayLabel);
-        staTimeTable.teusdayBox.getChildren().add(teusdayLabel);
-        staTimeTable.wednesdayBox.getChildren().add(wednesdayLabel);
-        staTimeTable.thursdayBox.getChildren().add(thursdayLabel);
-        staTimeTable.fridayBox.getChildren().add(fridayLabel);
-        staTimeTable.saturdayBox.getChildren().add(saturdayLabel);
-        staTimeTable.sundayBox.getChildren().add(sundayLabel);
+        
         for (int i = 0; i < mondaArrayList.size(); i++) {
             staTimeTable.mondayBox.getChildren().add(mondaArrayList.get(i));
         }
